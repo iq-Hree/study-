@@ -1,0 +1,908 @@
+# STUDYQUEST — COMPLETE CROSS-PLATFORM APP BUILD PROMPT
+
+## 1. Your Role and Mission
+
+Act as a senior cross-platform application developer, software architect, UI/UX designer, mobile and desktop engineer, and QA tester.
+
+Build **StudyQuest**, a polished, cozy, game-like study productivity application that works as both:
+
+1. An Android mobile application.
+2. A desktop application for computers.
+
+This is initially a personal productivity app for my own studies. I want to manage my syllabus, organize my study materials, follow a realistic routine, track habits, read textbooks, highlight important passages, and prepare for exams.
+
+The app may eventually become a SaaS product for other students, but the first priority is making the personal application reliable, attractive, and genuinely useful.
+
+I am a complete beginner at coding. Make technical decisions appropriate to the available environment, build the actual application, and explain any setup steps I need to complete in simple English.
+
+Do not stop at a landing page, mockup, or visual prototype. Build the working features, save data persistently, test the critical workflows, and clearly explain any limitations.
+
+## 2. Mandatory Platform Requirements
+
+**Build both a native Android mobile app and an installable desktop application. Do not build a website or Progressive Web App as the final product.**
+
+The two applications should share as much code and functionality as practical.
+
+### Preferred architecture
+
+First inspect the actual capabilities of the development environment.
+
+Consider:
+- React Native with Expo for Android.
+- Tauri or Electron for the desktop application.
+- Shared business logic, data models, validation, scheduling, and application services.
+- Platform-specific UI, file handling, storage, and PDF rendering where required.
+- A suitable local database, such as SQLite.
+- An appropriate optional cloud backend for cross-device synchronization and backups.
+
+Choose the architecture that is genuinely supported by the environment. Do not assume a mobile-specific library works on desktop.
+
+If the environment provides a suitable unified cross-platform framework, you may use it instead, provided it can deliver real Android and desktop applications.
+
+### Android requirements
+
+The Android app must support:
+- Touch-friendly smartphone navigation.
+- Syllabus and routine management.
+- Study timers and habit tracking.
+- Gamification and progress tracking.
+- PDF reading, bookmarks, highlights, and notes.
+- Persistent offline PDF downloads.
+- Persistent local data.
+- Safe behavior when the app is closed, restarted, or moved into the background.
+- A practical method of generating and installing the Android application, such as an APK where supported.
+
+### Desktop requirements
+
+The desktop app must support:
+- A dedicated desktop interface.
+- Resizable windows and appropriate keyboard and mouse interactions.
+- Syllabus and weekly routine management.
+- Study timers and habits.
+- PDF import from the computer.
+- A proper PDF reader with search where supported, zoom, highlights, bookmarks, and annotations.
+- Persistent local storage.
+- Offline PDF reading.
+- Convenient keyboard shortcuts where useful.
+- A suitable installer or distributable desktop package for the supported operating system.
+
+Determine which desktop operating systems can actually be packaged by the development environment. Do not claim that Windows, macOS, and Linux are all supported unless this has been verified.
+
+### Cross-device synchronization
+
+Design the data model so I can use the same account on mobile and desktop if cloud synchronization is available.
+
+Synchronize, where configured:
+- Subjects, chapters, topics, and completion status.
+- Routines and study sessions.
+- Habits and history.
+- XP, levels, and achievements.
+- PDF metadata and library organization.
+- Reading positions and bookmarks.
+- Highlights, annotation positions, and attached notes.
+
+Each device must retain its own local data and offline downloads.
+
+A PDF downloaded on Android must not be assumed to exist on desktop automatically. Provide an explicit download or transfer mechanism where needed.
+
+Never silently overwrite newer information, discard offline changes, or delete a user's files during synchronization.
+
+If cloud infrastructure is unavailable, deliver a reliable local-first application and explain what is needed to enable synchronization later.
+
+## 3. Product Design and Visual Identity
+
+Create a cozy, cute, premium-looking productivity app inspired by modern indie games and polished study applications.
+
+### Visual direction
+
+Use a gentle pastel palette:
+- Lavender and lilac.
+- Warm cream and off-white.
+- Soft pink.
+- Sage green.
+- Powder blue.
+- Neutral backgrounds.
+
+Use rounded cards, subtle shadows, tasteful gradients, friendly icons, readable typography, and smooth transitions.
+
+Include a cute companion character, such as a cat, bunny, or frog. Let the user select a character or customize its appearance where practical.
+
+The app should feel calming, motivating, and personal—not childish, cluttered, or distracting.
+
+### Platform-specific interfaces
+
+On Android:
+- Use touch-friendly controls.
+- Use a mobile navigation bar or another appropriate mobile navigation pattern.
+- Make reading comfortable on smaller screens.
+- Support portrait and landscape layouts where practical.
+
+On desktop:
+- Use a desktop navigation layout.
+- Provide more room for calendars, tables, and reading tools.
+- Support resizable windows.
+- Use keyboard and mouse interactions appropriately.
+- Allow comfortable side-by-side reading and note-taking if practical.
+
+Maintain a consistent visual identity while adapting each platform's interface to its strengths.
+
+Include useful loading states, empty states, error messages, confirmations, and recovery options.
+
+Every important button must work. Do not leave fake charts, placeholder actions, or nonfunctional menus.
+
+## 4. Main Navigation
+
+Create these main sections:
+
+1. **Home** — today's schedule, next study session, progress, deadlines, and companion.
+2. **Syllabus** — subjects, chapters, topics, subtopics, and completion tracking.
+3. **Study** — active study sessions and session history.
+4. **Library** — PDFs, reading, downloads, bookmarks, and highlights.
+5. **Habits** — recurring habits and daily checklists.
+6. **Progress** — analytics, XP, levels, and achievements.
+7. **Settings** — preferences, storage, synchronization, backup, and data management.
+
+The navigation must be intuitive, and essential functions should be accessible within one or two interactions.
+
+## 5. Home Dashboard
+
+Build a personalized dashboard showing:
+- Today's date.
+- Today's planned schedule.
+- The next study session.
+- A prominent Start Studying button.
+- Planned versus actual study time.
+- Overall syllabus completion.
+- Subjects requiring attention.
+- Upcoming exams and deadlines.
+- Today's habits.
+- Current XP and level.
+- Companion status.
+- Recently opened PDFs.
+- A Continue Reading shortcut.
+- A short motivational message.
+
+Prioritize useful next actions instead of overwhelming me with statistics.
+
+If the app is new and has no data, guide me through a simple initial setup.
+
+## 6. Syllabus Manager
+
+Create a hierarchical syllabus manager:
+
+**Subject → Chapter → Topic → Subtopic**
+
+For example:
+
+Physics → Mechanics → Newton's Laws → Applications of Newton's Second Law.
+
+Allow me to create, edit, reorder, archive, and delete these items.
+
+### Subject fields
+
+Each subject should support:
+- Name.
+- Color and icon.
+- Exam date or deadline.
+- Priority.
+- Notes.
+- Number of chapters and topics.
+- Completion percentage.
+
+### Chapter and topic fields
+
+Each chapter, topic, and subtopic should support:
+- Title.
+- Description.
+- Estimated study duration.
+- Difficulty.
+- Priority.
+- Deadline.
+- Status.
+- Personal notes.
+- Associated PDFs.
+- Related study sessions.
+- Revision dates.
+
+Use these statuses:
+- Not Started.
+- In Progress.
+- Completed.
+- Needs Revision.
+
+Display progress at the subject, chapter, and overall syllabus levels.
+
+Provide checklists so I can see exactly what remains unfinished.
+
+Allow manual syllabus entry. If CSV import is supported, include it as an optional convenience.
+
+Deleting a parent item must not silently delete associated documents. Explain the consequences and request confirmation when necessary.
+
+## 7. Routine Builder and Smart Scheduling
+
+Build a realistic daily and weekly study planner.
+
+Use:
+- Exam dates.
+- Subject priorities.
+- Remaining topics.
+- Estimated durations.
+- Available study hours.
+- Preferred study times.
+- Weekly commitments.
+- Breaks.
+- Revision requirements.
+- Buffer time.
+
+Let me define:
+- Available days.
+- Daily start and end times.
+- Maximum study time per day.
+- Preferred session duration.
+- Break duration.
+- Rest days.
+- Subject priorities.
+- Time reserved for revision.
+
+Generate a practical routine that distributes topics across available days.
+
+### Scheduling rules
+
+- Never create overlapping sessions.
+- Do not schedule outside my available hours.
+- Avoid unrealistic daily workloads.
+- Include breaks.
+- Reserve revision time before exams.
+- Allow buffer time for delays.
+- Make sessions editable.
+- Allow manual session creation.
+- Provide daily and weekly views.
+- Show approaching deadlines.
+
+### Missed sessions
+
+If I miss a session:
+1. Preserve the unfinished topic.
+2. Mark the session as missed or unfinished.
+3. Offer to reschedule it.
+4. Recalculate the remaining workload if necessary.
+5. Preserve the priority of upcoming exams.
+6. Avoid automatically overloading the following day.
+
+Do not silently rewrite the routine. Show meaningful schedule changes and let me approve them.
+
+## 8. Study Mode and Timer
+
+Study Mode is a core feature.
+
+When I tap Start Studying, open a dedicated screen showing:
+- Subject.
+- Chapter.
+- Exact topic.
+- Session objective.
+- Planned duration.
+- Countdown or elapsed-time timer.
+- Start, pause, resume, and finish controls.
+- Topic checklist.
+- Related PDFs.
+- Quick notes.
+- Revision flag.
+
+Let me start from the scheduled routine or select a topic manually.
+
+### Timer behavior
+
+- Accurately track active study time.
+- Stop recording active time while paused.
+- Resume from the correct point.
+- Avoid resetting the timer when navigating away.
+- Handle app backgrounding and restarts reliably.
+- Let me finish early or extend a session.
+- Do not automatically mark the topic complete when the timer ends.
+
+At the end of a session, allow me to record:
+- Actual study duration.
+- Understanding rating.
+- Key takeaways.
+- Personal notes.
+- Whether revision is needed.
+- Whether the topic is completed.
+
+Save the session to study history.
+
+## 9. PDF Library and Digital Bookshelf
+
+Build a dedicated Library for textbooks, class notes, lecture materials, past papers, and other PDFs.
+
+This is a core feature, not an optional addition.
+
+### PDF importing and organization
+
+Allow me to import PDFs using the native file picker on each platform.
+
+Attach PDFs to:
+- Subjects.
+- Chapters.
+- Topics.
+- Subtopics.
+
+Allow one document to be associated with multiple relevant topics without unnecessarily duplicating the underlying file.
+
+Each document should store:
+- Original file name.
+- Editable display title.
+- Subject and topic associations.
+- Optional description.
+- File size.
+- Page count, when available.
+- Date added.
+- Last-opened date.
+- Reading progress.
+- Local download status.
+- Cloud availability status, if applicable.
+
+Allow me to rename, reassign, replace, and remove documents. Confirm destructive actions.
+
+### Bookshelf interface
+
+Create a cozy bookshelf with:
+- Cover thumbnails where possible.
+- Placeholder covers when needed.
+- Search by title.
+- Filtering by subject, chapter, or topic.
+- Sorting by title, recently added, recently opened, or reading progress.
+- Recently Opened.
+- Downloaded for Offline.
+- Bookmarks.
+- Highlights.
+- Continue Reading.
+
+Allow me to open a PDF directly from the relevant syllabus topic.
+
+Do not store large PDF binaries directly inside ordinary database text fields. Use appropriate file storage and store metadata separately.
+
+Private documents must not be publicly accessible by default.
+
+## 10. PDF Reader
+
+Build a genuine PDF reader using a reliable library compatible with both platforms.
+
+Do not implement the reader as a gallery of screenshots.
+
+Support:
+- Correct PDF page rendering.
+- Previous and next page controls.
+- Natural scrolling.
+- Current page and total page count.
+- Direct page navigation.
+- Zoom in and out.
+- Fit-to-width and fit-to-page options where appropriate.
+- Full-screen reading.
+- Portrait and landscape layouts on mobile.
+- Searchable text where supported.
+- Proper rendering of diagrams, tables, equations, images, and scanned pages.
+- Reading-progress indicators.
+- Persistent last-read page.
+- Restoration of reading position after reopening the document.
+
+The reader must work offline for successfully downloaded PDFs.
+
+Keep controls compact and avoid obscuring important content.
+
+Handle large files efficiently.
+
+For damaged, password-protected, unsupported, or corrupted PDFs, show a helpful error and provide a retry or replacement option.
+
+Do not generate AI-powered PDF summaries, chapter summaries, or automatic AI study notes. I want to read and understand the material myself.
+
+## 11. PDF Highlighting and Annotations
+
+**Highlighting is mandatory. It must not be omitted from the final application.**
+
+Implement the basic PDF reader and reliable offline downloads first, then add persistent highlighting and annotation features.
+
+Design the data model for annotations from the beginning so that adding highlighting later does not require rebuilding the whole library.
+
+### Text highlighting
+
+Where the PDF engine supports text selection:
+- Let me select text.
+- Show a contextual highlighting menu.
+- Provide yellow, pink, blue, and green highlight colors.
+- Save the highlight persistently.
+- Associate it with the correct document and page.
+- Restore it after reopening the document.
+- Keep it aligned during zooming and orientation changes.
+- Let me change its color or delete it.
+- Let me tap a highlight to view its details.
+
+Store sufficient anchoring information to restore highlights reliably, including document identity, page number, selected text where available, position or geometry, color, and any engine-specific information required.
+
+Do not store highlights only in temporary interface state.
+
+### Notes attached to highlights
+
+Let me attach a short personal note to a highlight where practical.
+
+Allow me to edit or delete these notes.
+
+### Scanned PDFs
+
+Scanned PDFs may not contain selectable text.
+
+For these documents:
+- Continue to support reading, bookmarks, and offline access.
+- Explain when text selection is unavailable.
+- If feasible, provide rectangular page annotations as a fallback.
+- Save annotation coordinates relative to the page so they remain correctly positioned after zooming or reopening.
+- Let me change colors and delete annotations.
+
+Do not require AI or automatic OCR for basic functionality.
+
+### Highlight library
+
+Provide a Highlights section listing:
+- Document title.
+- Associated subject or topic.
+- Page number.
+- Highlight color.
+- Selected text or preview, when available.
+- Personal note, if any.
+
+Let me filter highlights by document and subject.
+
+Tapping a highlight should open the source PDF at the relevant page and restore the correct location as accurately as possible.
+
+Highlights must remain available offline with the downloaded PDF and must persist after app restarts.
+
+## 12. Bookmarks and Reading Progress
+
+Support two separate concepts:
+
+1. Automatic reading position — where I last stopped.
+2. Manual bookmarks — pages I deliberately save.
+
+Allow bookmarks to contain:
+- Page number.
+- Optional title.
+- Optional note.
+- Creation date.
+
+Provide a bookmark list for every document.
+
+Let me jump to, rename, and remove bookmarks.
+
+Persist bookmarks and reading progress locally.
+
+Do not mark a syllabus topic complete merely because I have opened or read its PDF.
+
+## 13. Offline PDF Downloads
+
+Offline reading is one of the most important features.
+
+I need to read textbooks when I am away from home without internet access.
+
+### Download workflow
+
+Every PDF should have a clear download control.
+
+When I download a document:
+1. Save the complete PDF to persistent local device storage.
+2. Show progress when feasible.
+3. Handle interruption and retry.
+4. Verify the file is usable before marking it available offline.
+5. Display an Available Offline status only after a successful download.
+6. Show the document in Downloaded for Offline.
+
+Never claim offline availability if the file has not been fully downloaded.
+
+### Offline functionality
+
+In airplane mode, a downloaded PDF must allow me to:
+- Open and read the document.
+- Navigate through its pages.
+- Zoom.
+- Search when supported by the document.
+- Restore reading position.
+- Open bookmarks.
+- View existing highlights.
+- Create or edit supported highlights and annotations.
+- Save reading progress and personal notes.
+
+Changes made offline must be saved locally.
+
+If synchronization is available, queue offline changes and synchronize them when connectivity returns. Resolve conflicts safely rather than silently discarding changes.
+
+### Storage management
+
+Display:
+- Download status.
+- File size.
+- Total local storage usage where available.
+- A way to remove a local copy.
+- A way to download the document again.
+- Warnings when storage is insufficient.
+
+Removing a local copy must not delete the cloud original or its associated annotations.
+
+Keep offline copies independent on each device unless I explicitly transfer them.
+
+## 14. Study Mode and PDF Integration
+
+The Library and Study Mode must work together.
+
+When I start studying a topic, show its associated PDFs.
+
+Allow me to:
+- Open a PDF without losing the active study session.
+- Continue from the previous reading position.
+- Highlight important passages.
+- Create bookmarks and notes.
+- Return to the study session.
+- Record which documents I used.
+
+Track reading time separately from general study time where practical.
+
+At the end of a session, optionally record:
+- Documents used.
+- Pages or sections covered.
+- Highlights created.
+- Notes taken.
+- Actual duration.
+- Understanding rating.
+- Revision requirement.
+
+Reading an entire document must not automatically mean the topic is mastered.
+
+Keep syllabus completion under my control.
+
+## 15. Habit Tracker
+
+Build a customizable habit tracker.
+
+Example habits include:
+- Daily studying.
+- Reading a target number of pages.
+- Revising a topic.
+- Waking up at a chosen time.
+- Sleeping on time.
+- Exercising.
+- Drinking enough water.
+- Following a personal routine.
+
+Allow me to create my own habits rather than forcing a fixed set.
+
+Each habit should support:
+- Name and icon.
+- Frequency.
+- Active days.
+- Optional target.
+- Daily completion status.
+- History.
+- Weekly and monthly progress.
+
+Let me edit, pause, archive, or delete habits.
+
+Missing a day must not erase all progress or cause harsh penalties. Encourage restarting.
+
+## 16. Gamification and Companion
+
+Make studying feel like a cozy game.
+
+### XP and rewards
+
+Award modest XP for meaningful actions:
+- Completing genuine study sessions.
+- Finishing syllabus topics.
+- Completing revision.
+- Following the routine.
+- Completing habits.
+- Making genuine reading progress.
+
+Prevent duplicate rewards when the same session is saved more than once.
+
+Avoid unlimited rewards for repeated clicks or opening the same PDF repeatedly.
+
+### Levels and achievements
+
+Include:
+- XP progression.
+- Level-up celebrations.
+- Achievement badges.
+- Study milestones.
+- Weekly consistency milestones.
+- Syllabus completion milestones.
+- Reading milestones.
+
+### Companion
+
+Include a cute cat, bunny, frog, or similar character.
+
+Where practical, let me:
+- Choose a companion.
+- Customize its appearance.
+- Unlock accessories.
+- Decorate a small room or garden.
+- See subtle reactions to meaningful progress.
+
+Keep the companion motivating rather than distracting.
+
+Do not shame me for missed days or erase achievements.
+
+## 17. Progress and Analytics
+
+Display honest, useful statistics:
+- Total study time.
+- Daily and weekly study time.
+- Planned versus actual time.
+- Study time by subject.
+- Topics completed and remaining.
+- Syllabus completion.
+- Revision sessions.
+- Habit consistency.
+- Reading activity.
+- Reading progress by PDF where practical.
+- Upcoming deadlines.
+- Recent achievements.
+
+Use clear charts and labels.
+
+Do not count paused time as active study time.
+
+Allow me to review past sessions and their notes.
+
+## 18. Notifications and Reminders
+
+If supported, provide optional reminders for:
+- Upcoming study sessions.
+- Exam deadlines.
+- Revision sessions.
+- Unfinished work.
+- Habits.
+
+Let me configure preferences and quiet hours.
+
+Request permissions appropriately.
+
+If reminders are unavailable in the current environment, provide an in-app alternative and explain the limitation.
+
+## 19. Settings, Backup, and Data Ownership
+
+Include settings for:
+- Display name.
+- Theme.
+- Study availability.
+- Preferred study hours.
+- Default session duration.
+- Break duration.
+- Notifications.
+- Storage management.
+- Synchronization.
+- Backup and restore.
+- Data export.
+- Resetting the app.
+
+Protect against accidental data loss.
+
+Where feasible, allow export of:
+- Syllabus.
+- Routines.
+- Study history.
+- Habits.
+- Notes.
+- Bookmarks.
+- Highlights.
+
+Clearly explain whether PDF binaries are included in backups.
+
+Never claim that a backup succeeded unless it actually completed.
+
+Never silently delete user data.
+
+## 20. Reliability and Data Integrity
+
+Prioritize reliability over visual polish.
+
+Requirements:
+- Persistent data across app restarts.
+- Correct relationships between syllabus items and documents.
+- Correct relationships between highlights and PDF pages.
+- Reliable bookmark and reading-position persistence.
+- Interrupted upload and download recovery.
+- Large-file handling.
+- Safe synchronization.
+- Protection against duplicate records.
+- Protection against duplicate XP.
+- Clear error messages.
+- Recovery options.
+- Input validation.
+- Confirmation before destructive actions.
+- No fake functionality.
+
+If a feature is not feasible in the available environment, explain the limitation and implement the closest reliable alternative.
+
+## 21. Implementation Phases
+
+Build in phases while preserving the complete architecture.
+
+### Phase 1 — Core study application
+
+Implement:
+- Cross-platform project structure.
+- Android and desktop application shells.
+- Main navigation.
+- Home dashboard.
+- Syllabus manager.
+- Routine builder.
+- Study Mode and timer.
+- Habit tracker.
+- Basic XP and progress.
+- Persistent local storage.
+
+Verify that both target applications can be built and launched as early as possible.
+
+### Phase 2 — PDF library and basic reader
+
+Implement:
+- PDF importing.
+- Library and bookshelf.
+- Topic associations.
+- PDF rendering.
+- Page navigation.
+- Zoom.
+- Page jumping.
+- Search where supported.
+- Last-read position.
+- Bookmarks.
+- Recent documents.
+- Persistent metadata.
+
+### Phase 3 — Offline downloads
+
+Implement and test:
+- Persistent local PDF downloads.
+- Download progress.
+- Interrupted download recovery.
+- Offline status.
+- Airplane-mode reading.
+- Local reading progress.
+- Offline bookmarks.
+- Storage management.
+
+**Do not move on until downloaded PDFs can be opened and read without an internet connection.**
+
+### Phase 4 — Highlights and annotations
+
+Implement:
+- Text selection and highlighting.
+- Multiple highlight colors.
+- Persistent annotations.
+- Highlight editing and deletion.
+- Notes attached to highlights.
+- Highlights library.
+- Navigation back to source pages.
+- A practical scanned-PDF annotation fallback where feasible.
+- Offline highlight access and persistence.
+
+Test highlighting after reopening documents, zooming, changing orientation, restarting the app, and reading offline.
+
+### Phase 5 — Synchronization and polish
+
+Implement where supported:
+- Cross-device synchronization.
+- Conflict handling.
+- Backup and restore.
+- Advanced analytics.
+- Companion customization.
+- Additional achievements.
+- Optional reminders.
+- Interface polish.
+- Performance improvements.
+
+Do not prioritize decorative features over working PDF reading, offline downloads, or persistent highlighting.
+
+## 22. Mandatory Testing
+
+### Syllabus and scheduling
+- Create, edit, and delete syllabus items.
+- Generate a routine.
+- Verify that sessions do not overlap.
+- Reschedule a missed session.
+- Verify completion percentages.
+
+### Study Mode
+- Start, pause, resume, and finish sessions.
+- Navigate away and return.
+- Verify elapsed time.
+- Restart the application.
+- Verify that saved sessions persist.
+
+### PDF reader
+- Import PDFs from the device.
+- Open and navigate through pages.
+- Zoom and search where supported.
+- Close and reopen documents.
+- Verify reading-position restoration.
+- Test searchable and scanned PDFs.
+- Test large documents.
+
+### Offline functionality
+- Download a PDF.
+- Enable airplane mode.
+- Open the downloaded file.
+- Navigate through pages.
+- Restart the application.
+- Verify reading position and bookmarks.
+- Create or edit supported highlights offline.
+- Restore connectivity.
+- Verify synchronization if implemented.
+- Remove a local copy and confirm that the cloud original is preserved.
+
+### Highlights
+- Highlight text.
+- Change colors.
+- Add a note.
+- Close and reopen the document.
+- Verify persistence.
+- Navigate from the Highlights section to the source.
+- Delete a highlight and verify the change.
+- Test alignment at different zoom levels.
+
+### Cross-device behavior
+If synchronization is implemented:
+- Create a topic on one device and verify it appears on the other.
+- Update a reading position and verify synchronization.
+- Verify that bookmarks and highlights synchronize.
+- Test offline edits and subsequent synchronization.
+- Confirm that conflicts do not silently delete changes.
+- Confirm that local PDF downloads remain available independently on each device.
+
+### Final verification
+- Test the Android build.
+- Test the desktop build.
+- Verify persistence after restarts.
+- Fix critical issues discovered during testing.
+- Document any remaining limitations honestly.
+
+## 23. Development Rules
+
+1. Inspect the development environment before choosing frameworks.
+2. Verify that both Android and desktop builds are actually supported.
+3. Build a working application, not just a mockup.
+4. Share code where practical without forcing incompatible libraries across platforms.
+5. Keep the application usable on mobile and desktop.
+6. Prioritize data persistence and reliability.
+7. Do not add AI-powered PDF summaries or unnecessary AI features.
+8. Do not add subscriptions or complex SaaS functionality at this stage.
+9. Do not leave essential features as placeholders.
+10. Do not claim a feature works unless it has been implemented and tested.
+11. Explain required configuration, credentials, permissions, and build steps in beginner-friendly English.
+12. If the project is too large for one pass, complete the phases sequentially without discarding later requirements.
+13. Preserve existing functionality while adding features.
+14. If the environment cannot produce both installable applications, explain exactly what is missing instead of silently substituting a website.
+15. Finish by reporting what was built, what was tested, what requires setup, and what remains incomplete.
+
+## 24. Definition of Success
+
+StudyQuest is successful when I can use it every day on both my Android phone and desktop computer.
+
+I should be able to:
+- Manage my syllabus.
+- Generate and follow a realistic study routine.
+- Start a topic with one tap.
+- Track study time.
+- Maintain habits.
+- Earn reasonable rewards.
+- Monitor my progress.
+- Import and organize textbooks and notes.
+- Read PDFs in a proper reader.
+- Remember where I stopped.
+- Highlight important passages.
+- Save bookmarks and personal notes.
+- Download PDFs and read them without internet.
+- Keep my data persistent.
+- Synchronize progress across devices if synchronization is configured.
+
+The application should feel cute, polished, and motivating, but its underlying functionality must be reliable.
+
+**Begin by inspecting the available environment and verifying the Android and desktop build paths. Then implement Phase 1 and continue through the remaining phases in order. Deliver actual mobile and desktop applications—not a website—and treat PDF reading, offline downloads, and persistent highlighting as required features.**

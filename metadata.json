@@ -1,0 +1,6 @@
+{
+  "name": "StudyQuest",
+  "description": "A cozy, gamified study productivity app featuring syllabus management, smart routine planning, study timer, habit tracking, and an integrated PDF reader with highlights and bookmarks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
